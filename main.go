@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -14,6 +15,7 @@ func setupRouter() *gin.Engine {
 	r := gin.Default()
 
 	r.GET("/vote", func(c *gin.Context) {
+		fmt.Println("Getting vote")
 		payload := gin.H{}
 		voteA := 0
 		voteB := 0
@@ -31,6 +33,7 @@ func setupRouter() *gin.Engine {
 	})
 
 	r.POST("/vote", func(c *gin.Context) {
+		fmt.Println("Posting vote")
 		buf := make([]byte, 1024)
 		num, _ := c.Request.Body.Read(buf)
 		reqBody := buf[0:num]
